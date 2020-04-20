@@ -1,4 +1,40 @@
 .features {
-  background-color: $color-grey-light-2;
   grid-column: center-start/center-end;
+
+  margin: 15rem 0;
+
+  display: grid;
+  //grid-template-columns: repeat(3, 1fr);
+  // Following specifies to have any number of columns, but need to keep the width in the range
+  // of 25rem and 1fr(full width)
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 6rem;
+
+  // We need to set this, as by default elements inside the container set to "stretch",
+  // which will create some space between h4 and p tags unevenly inside "feature" element.
+  align-items: start;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 2.5rem;
+
+  &__icon {
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+    transform: translateY(-1rem);
+
+    //grid-row: 1/-1; In order to work this, it should have explicitly defined the grid-template-rows
+    // in the grid container. Since we have defined only the columns, we have only the
+    // implicit rows inside the grid container. Hence we can't use this command.
+    // Instead we have to use:
+    grid-row: 1/ span 2;
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
 }

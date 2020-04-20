@@ -54,10 +54,4 @@ body {
 
   // But when we reduce the screen size, above mentioned 1fr columns will disappear, hence let's add a min width to them.
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)  [full-end];
-
-  // TODO: Remove after template design
-  & > * {
-    padding: 40px;
-    font-size: 3rem;
-  }
 }
