@@ -33,3 +33,31 @@ body {
   font-weight: 300;
   line-height: 1.6;
 }
+
+.container {
+  display: grid;
+
+  // Define 6 rows
+  // In a typical design, we usually name columns then the rows, as the content is more focused
+  // towards the columns.
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+
+  // For the columns we can use industry standards, for an instance bootstrap uses 12 columns.
+  // Here let's use fixed 8 columns.
+  // grid-template-columns: repeat(8, 1fr);
+  // In order to have fix size of the column, we will use 14rem ~ [1140px => 1140/8 => 142.5px ~ 14rem]
+  // Also this size should be between min-content size and the max 14rem.
+  // Also we add 8rem for the sidebar.
+  // And also let's add another two 1fr columns either and of above 8 columns, so that they will
+  // adjust it's width while keeping those 8 cells within the defined "minmax" range.
+  //grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] 1fr [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] 1fr [full-end];
+
+  // But when we reduce the screen size, above mentioned 1fr columns will disappear, hence let's add a min width to them.
+  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)  [full-end];
+
+  // TODO: Remove after template design
+  & > * {
+    padding: 40px;
+    font-size: 3rem;
+  }
+}
