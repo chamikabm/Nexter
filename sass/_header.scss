@@ -1,4 +1,65 @@
 .header {
   background-color: $color-grey-dark-1;
   grid-column: full-start/ col-end 6;
+  background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)),
+  url("../img/hero.jpeg");
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 8rem 8rem;
+
+  display: grid;
+
+  grid-template-rows: 1fr min-content 6rem 1fr;
+  grid-template-columns: max-content;
+  grid-row-gap: 1.5rem;
+  justify-content: center;
+
+  &__logo {
+    height: 3rem;
+    justify-self: center;
+  }
+
+  &__btn {
+    justify-self: start;
+    align-self: start;
+  }
+
+  &__seenon-text {
+    // Here the special thing is in the HTML we have only one div element with the class "header__seenon-text"
+    // but having "display: grid;" CSS property in this element it will treat the "Text" inside this element as
+    // separate element and thus, we can use the CSS Grid properties as we do with others.
+    // Also it will treat the ::before and ::after pseudo elements also as a part of the grid elements.
+    display: grid;
+
+    // Here we define 3 columns first and last 1fr for ::before and ::after pseudo elements.
+    // And middle "max-content" for the text element.
+    grid-template-columns: 1fr max-content 1fr;
+    grid-column-gap: 15px;
+    align-items: center;
+
+    font-size: 1.6rem;
+    color: $color-grey-light-2;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 1px;
+      display: block;
+
+      // "currentColor" will take the current text color.
+      background-color: currentColor;
+    }
+  }
+
+  &__seenon-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 3rem;
+    justify-items: center;
+
+    img {
+      height: 2.5rem;
+      filter: brightness(70%);
+    }
+  }
 }
