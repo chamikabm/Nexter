@@ -14,6 +14,10 @@ $color-grey-dark-2: #6D5D4B;
 $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
 
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px ==> 1200px/16px => 75
+$bp-large: 62.5em; // 1000px ==> 1000px/16px => 62.5
+
 *,
 *::before,
 *::after {
@@ -25,6 +29,10 @@ $font-display: 'Josefin Sans', sans-serif;
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%;  // 1rem = 8px
+  }
 }
 
 body {
@@ -54,4 +62,13 @@ body {
 
   // But when we reduce the screen size, above mentioned 1fr columns will disappear, hence let's add a min width to them.
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)  [full-end];
+
+  @media only screen and (max-width: $bp-large) {
+
+    // We add a new row to place the side bar. Because we are moving side bar from being a column to row.
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+
+    // Here we have removed the side bar from the columns.
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)  [full-end];
+  }
 }
