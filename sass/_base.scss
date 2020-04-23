@@ -17,6 +17,7 @@ $font-display: 'Josefin Sans', sans-serif;
 // RESPONSIVE BREAKPOINTS
 $bp-largest: 75em; // 1200px ==> 1200px/16px => 75
 $bp-large: 62.5em; // 1000px ==> 1000px/16px => 62.5
+$bp-medium: 50em; // 800px ==> 800px/16px => 50
 
 *,
 *::before,
@@ -70,5 +71,28 @@ body {
 
     // Here we have removed the side bar from the columns.
     grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8,[col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)  [full-end];
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    // Here we are going to add a new row, in order to move the realtors section to a new row.
+    // 6rem - for sidebar,
+
+    // calc(100vh-6rem) - for header  we need to have the size of full view port height for the header,
+    // but since we have 6rem sidebar top of the header as a row, we need to reduce that from the
+    // full view port height(i.e 100% of the view port height(100vh))
+    // 100vh = 100% of the view port height.
+    // This allows to cover entire view port from the header and sidebar, thus next section only visible
+    // after a scroll.
+
+    // 1st min-content - for realtors. etc.
+    //grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content 40vw repeat(3, min-content);
+
+    // But to have responsive behavior for "story__content", we need to set it's row to "min-content"
+    //grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content min-content repeat(3, min-content);
+
+    // Since we have 6 min-content, we can remove all them and simplify the definition as follows:
+    // Hence CSS grid auto placement algorithm will find the balance between remaining rows based on
+    // the each of the row contents. (same as having above definition with 6 min-content rows.)
+    grid-template-rows: 6rem calc(100vh - 6rem);
   }
 }
