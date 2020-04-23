@@ -1,4 +1,41 @@
 .realtors {
   background-color: $color-secondary;
   grid-column: col-start 7/full-end;
+  padding: 3rem;
+
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  grid-row-gap: 2rem;
+
+  &__list {
+    display: grid;
+    // min-content - for image ,  max-content - for text
+    grid-template-columns: min-content max-content;
+    grid-column-gap: 2rem;
+
+    // We set the "grid-row-gap" as a unit of "vh", so that when we change the
+    // view height or when we view through a larger screen, the space between elements
+    // will be adjust based on the screen height.
+    grid-row-gap: 5vh;
+
+    align-items: center;
+  }
+
+  &__img {
+    width: 7rem;
+
+    // Use to make the image round
+    border-radius: 50%;
+
+    // Always make display block in order to remove extra white space around it's parent.
+    display: block;
+  }
+
+  &__sold {
+    text-transform: uppercase;
+    color: $color-grey-light-2;
+    margin-top: -3px;
+  }
 }
